@@ -1,0 +1,10 @@
+target 'TFLayoutConstraintsFactory', :exclusive => true do
+  pod "TFLayoutConstraintsFactory", :path => "../"
+end
+
+target 'Tests', :exclusive => true do
+  pod "TFLayoutConstraintsFactory", :path => "../"
+
+  pod 'Kiwi'
+  pod 'FBSnapshotTestCase'
+end
