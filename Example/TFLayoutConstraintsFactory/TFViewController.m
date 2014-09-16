@@ -38,8 +38,10 @@
     redView.translatesAutoresizingMaskIntoConstraints = NO;
     redView.backgroundColor = [UIColor redColor];
     [self.view addSubview:redView];
-
-    [self.view addConstraints:[NSLayoutConstraint tf_insetsConstraintsForView:redView edgeInsets:UIEdgeInsetsZero layoutOptions:NSLayoutFormatDirectionLeadingToTrailing]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[redView(100)]" 
+                                                                      options:NSLayoutFormatDirectionLeadingToTrailing 
+                                                                      metrics:nil views:NSDictionaryOfVariableBindings(redView)]];
+    [self.view addConstraints:[NSLayoutConstraint tf_insetsConstraintsForView:redView edgeInsets:UIEdgeInsetsMake(20, kTFNoInsetMetric, 10, 30)]];
     UILabel *l1 = [[UILabel alloc] init];
     l1.translatesAutoresizingMaskIntoConstraints = NO;
     l1.text = @"1";
@@ -79,8 +81,12 @@
     sep3.backgroundColor = [UIColor blueColor];
     [self.view addSubview:sep3];
 
-    [self.view addConstraints:[NSLayoutConstraint tf_verticalAlignmentConstraintsForViews:@[l1, l2, l3, l4]
-                                                                           separatorViews:NSDictionaryOfVariableBindings(sep1, sep2, sep3)
+    UIView *view = l1;
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[view]-40-|" options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                      metrics:nil views:NSDictionaryOfVariableBindings(view)]];
+    
+    [self.view addConstraints:[NSLayoutConstraint tf_horizontalAlignmentConstraintsForViews:@[l1, l2, l3, l4]
+                                                                           separatorViews:@[sep1, sep2, sep3]
                                                                                   margins:15]];
 }
 

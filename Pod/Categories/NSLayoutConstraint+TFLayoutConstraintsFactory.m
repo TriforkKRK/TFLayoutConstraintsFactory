@@ -27,23 +27,15 @@
 
 #pragma mark - Public Interface
 
-+ (NSArray *)tf_horizontalAlignmentConstraintsForViews:(NSArray *)viewsArray separatorViews:(NSDictionary *)separatorsViews margins:(CGFloat)margin {
-    return [self tf_generateAlignmentConstraintForViews:viewsArray separatorViews:separatorsViews horizontally:YES margins:margin];
++ (NSArray *)tf_horizontalAlignmentConstraintsForViews:(NSArray *)viewsArray separatorViews:(NSArray *)separatorsViewsArray margins:(CGFloat)margin {
+    return [self tf_generateAlignmentConstraintForViews:viewsArray separatorViews:separatorsViewsArray horizontally:YES margins:margin];
 }
 
-+ (NSArray *)tf_horizontalAlignmentConstraintsForViews:(NSArray *)viewsArray separatorViews:(NSDictionary *)separatorsViews {
-    return [self tf_generateAlignmentConstraintForViews:viewsArray separatorViews:separatorsViews horizontally:YES margins:0];
++ (NSArray *)tf_verticalAlignmentConstraintsForViews:(NSArray *)viewsArray separatorViews:(NSArray *)separatorsViewsArray margins:(CGFloat)margin {
+    return [self tf_generateAlignmentConstraintForViews:viewsArray separatorViews:separatorsViewsArray horizontally:NO margins:margin];
 }
 
-+ (NSArray *)tf_verticalAlignmentConstraintsForViews:(NSArray *)viewsArray separatorViews:(NSDictionary *)separatorsViews margins:(CGFloat)margin {
-    return [self tf_generateAlignmentConstraintForViews:viewsArray separatorViews:separatorsViews horizontally:NO margins:margin];
-}
-
-+ (NSArray *)tf_verticalAlignmentConstraintsForViews:(NSArray *)viewsArray separatorViews:(NSDictionary *)separatorsViews {
-    return [self tf_generateAlignmentConstraintForViews:viewsArray separatorViews:separatorsViews horizontally:NO margins:0];
-}
-
-+ (NSArray *)tf_insetsConstraintsForView:(UIView *)view edgeInsets:(UIEdgeInsets)insets layoutOptions:(NSLayoutFormatOptions)layoutFormatOptions {
++ (NSArray *)tf_insetsConstraintsForView:(UIView *)view edgeInsets:(UIEdgeInsets)insets {
     NSMutableArray *constraints = [[NSMutableArray alloc] init];
     NSDictionary *insetsDictionary = @{@"top" : @(insets.top),
             @"bottom" : @(insets.bottom),
@@ -55,7 +47,7 @@
     NSString *verticalBottom = isnan(insets.bottom) ? @"" : [NSString stringWithFormat:@"-%@-|", @(insets.bottom).stringValue];
 
     [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"V:%@[view]%@", verticalTop, verticalBottom]
-                                                                             options:layoutFormatOptions
+                                                                             options:NSLayoutFormatDirectionLeadingToTrailing
                                                                              metrics:insetsDictionary
                                                                                views:viewDictionary]];
 
@@ -63,7 +55,7 @@
     NSString *horizontalRight = isnan(insets.right) ? @"" : [NSString stringWithFormat:@"-%@-|", @(insets.right).stringValue];
 
     [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"H:%@[view]%@", horizontalLeft, horizontalRight]
-                                                                             options:layoutFormatOptions
+                                                                             options:NSLayoutFormatDirectionLeadingToTrailing
                                                                              metrics:insetsDictionary
                                                                                views:viewDictionary]];
 
@@ -74,30 +66,32 @@
 #pragma mark - Private Interface
 
 + (NSArray *)tf_generateAlignmentConstraintForViews:(NSArray *)viewsArray
-                                     separatorViews:(NSDictionary *)separatorsViewsDictionary
+                                     separatorViews:(NSArray *)separatorsViewsArray
                                        horizontally:(BOOL)isHorizontal
                                             margins:(CGFloat)margin {
-    if (!viewsArray || !separatorsViewsDictionary) {
+    if (!viewsArray || !separatorsViewsArray) {
         return nil;
     }
 
-    NSAssert(!(separatorsViewsDictionary.allKeys.count < viewsArray.count - 1), ([NSString stringWithFormat:@"Method %s provided with too little separators views", sel_getName(_cmd)]));
+    NSAssert(!(separatorsViewsArray.count < viewsArray.count - 1), ([NSString stringWithFormat:@"Method %s provided with too little separators views", sel_getName(_cmd)]));
 
-    NSArray *separatorsKeysArray = separatorsViewsDictionary.allKeys;
     NSMutableDictionary *viewsDictionary = [[NSMutableDictionary alloc] init];
     NSString *constrainString = @"";
     for (int i = 0; i < viewsArray.count; ++i) {
         NSString *viewKey = [NSString stringWithFormat:@"view_%d", i];
         viewsDictionary[viewKey] = viewsArray[(NSUInteger) i];
 
-        NSString *separatorKey = i < viewsArray.count - 1 ? separatorsKeysArray[(NSUInteger) i] : @"";
+        NSString *separatorKey = [NSString stringWithFormat:@"separator_%d", i];
+        if (i < separatorsViewsArray.count) {
+            viewsDictionary[separatorKey] = separatorsViewsArray[(NSUInteger) i];
+        }
 
         if (i == 0) {
             constrainString = [NSString stringWithFormat:@"%@|-margin-[%@][%@]", isHorizontal ? @"H:" : @"V:", viewKey, separatorKey];
         } else if (i == viewsArray.count - 1) {
             constrainString = [NSString stringWithFormat:@"%@[%@]", constrainString, viewKey];
         } else {
-            constrainString = [NSString stringWithFormat:@"%@[%@][%@(%@)]", constrainString, viewKey, separatorKey, separatorsKeysArray[0]];
+            constrainString = [NSString stringWithFormat:@"%@[%@][%@(%@)]", constrainString, viewKey, separatorKey, @"separator_0"];
         }
 
         if (i == viewsArray.count - 1) {
@@ -105,13 +99,10 @@
         }
     }
 
-    NSMutableDictionary *concatenatedDictionary = [NSMutableDictionary dictionaryWithDictionary:viewsDictionary];
-    [concatenatedDictionary addEntriesFromDictionary:separatorsViewsDictionary];
-
     return [NSLayoutConstraint constraintsWithVisualFormat:constrainString
-                                                   options:isHorizontal ? NSLayoutFormatAlignAllTop : NSLayoutFormatAlignAllLeft
+                                                   options:isHorizontal ? NSLayoutFormatAlignAllBottom : NSLayoutFormatAlignAllLeft
                                                    metrics:@{@"margin" : @(margin)}
-                                                     views:concatenatedDictionary];
+                                                     views:viewsDictionary];
 }
 
 @end

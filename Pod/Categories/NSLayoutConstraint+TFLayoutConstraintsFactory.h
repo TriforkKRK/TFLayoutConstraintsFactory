@@ -21,16 +21,14 @@
  * THE SOFTWARE.
  */
 
+static const CGFloat kTFNoInsetMetric = NAN;
+
 @interface NSLayoutConstraint (TFLayoutConstraintsFactory)
 
-+ (NSArray *)tf_horizontalAlignmentConstraintsForViews:(NSArray *)viewsArray separatorViews:(NSDictionary *)separatorsViews margins:(CGFloat)margin;
++ (NSArray *)tf_horizontalAlignmentConstraintsForViews:(NSArray *)viewsArray separatorViews:(NSArray *)separatorsViewsArray margins:(CGFloat)margin;
 
-+ (NSArray *)tf_horizontalAlignmentConstraintsForViews:(NSArray *)viewsArray separatorViews:(NSDictionary *)separatorsViews;
++ (NSArray *)tf_verticalAlignmentConstraintsForViews:(NSArray *)viewsArray separatorViews:(NSArray *)separatorsViewsArray margins:(CGFloat)margin;
 
-+ (NSArray *)tf_verticalAlignmentConstraintsForViews:(NSArray *)viewsArray separatorViews:(NSDictionary *)separatorsViews margins:(CGFloat)margin;
-
-+ (NSArray *)tf_verticalAlignmentConstraintsForViews:(NSArray *)viewsArray separatorViews:(NSDictionary *)separatorsViews;
-
-+ (NSArray *)tf_insetsConstraintsForView:(UIView *)view edgeInsets:(UIEdgeInsets)insets layoutOptions:(NSLayoutFormatOptions)layoutFormatOptions;
++ (NSArray *)tf_insetsConstraintsForView:(UIView *)view edgeInsets:(UIEdgeInsets)insets;
 
 @end
