@@ -41,7 +41,7 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[redView(100)]" 
                                                                       options:NSLayoutFormatDirectionLeadingToTrailing 
                                                                       metrics:nil views:NSDictionaryOfVariableBindings(redView)]];
-    [self.view addConstraints:[NSLayoutConstraint tf_insetsConstraintsForView:redView edgeInsets:UIEdgeInsetsMake(20, kTFNoInsetMetric, 10, 30)]];
+    [self.view addConstraints:[NSLayoutConstraint tf_constraintsForView:redView expandingEdgesToSuperviewWithInsets:UIEdgeInsetsMake(20, kTFNoInsetMetric, 10, 30)]];
     UILabel *l1 = [[UILabel alloc] init];
     l1.translatesAutoresizingMaskIntoConstraints = NO;
     l1.text = @"1";

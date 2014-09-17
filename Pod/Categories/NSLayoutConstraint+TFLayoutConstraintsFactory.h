@@ -29,6 +29,5 @@ static const CGFloat kTFNoInsetMetric = NAN;
 
 + (NSArray *)tf_verticalAlignmentConstraintsForViews:(NSArray *)viewsArray separatorViews:(NSArray *)separatorsViewsArray margins:(CGFloat)margin;
 
-+ (NSArray *)tf_insetsConstraintsForView:(UIView *)view edgeInsets:(UIEdgeInsets)insets;
-
++ (NSArray *)tf_constraintsForView:(UIView *)view expandingEdgesToSuperviewWithInsets:(UIEdgeInsets)insets;
 @end

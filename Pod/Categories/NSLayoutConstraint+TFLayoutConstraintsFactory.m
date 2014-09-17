@@ -35,7 +35,7 @@
     return [self tf_generateAlignmentConstraintForViews:viewsArray separatorViews:separatorsViewsArray horizontally:NO margins:margin];
 }
 
-+ (NSArray *)tf_insetsConstraintsForView:(UIView *)view edgeInsets:(UIEdgeInsets)insets {
++ (NSArray *)tf_constraintsForView:(UIView *)view expandingEdgesToSuperviewWithInsets:(UIEdgeInsets)insets {
     NSMutableArray *constraints = [[NSMutableArray alloc] init];
     NSDictionary *insetsDictionary = @{@"top" : @(insets.top),
             @"bottom" : @(insets.bottom),
