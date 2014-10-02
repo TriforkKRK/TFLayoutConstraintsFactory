@@ -38,10 +38,10 @@
     redView.translatesAutoresizingMaskIntoConstraints = NO;
     redView.backgroundColor = [UIColor redColor];
     [self.view addSubview:redView];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[redView(100)]" 
-                                                                      options:NSLayoutFormatDirectionLeadingToTrailing 
-                                                                      metrics:nil views:NSDictionaryOfVariableBindings(redView)]];
-    [self.view addConstraints:[NSLayoutConstraint tf_constraintsForView:redView expandingEdgesToSuperviewWithInsets:UIEdgeInsetsMake(20, kTFNoInsetMetric, 10, 30)]];
+    
+    [self.view addConstraints:[NSLayoutConstraint tf_constraintsForView:redView withSize:CGSizeMake(kTFNoMetric, 80)]];
+    
+    [self.view addConstraints:[NSLayoutConstraint tf_constraintsForView:redView expandingEdgesToSuperviewWithInsets:UIEdgeInsetsMake(10, 20, kTFNoMetric, 40)]];
     UILabel *l1 = [[UILabel alloc] init];
     l1.translatesAutoresizingMaskIntoConstraints = NO;
     l1.text = @"1";

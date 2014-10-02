@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-static const CGFloat kTFNoInsetMetric = NAN;
+static const CGFloat kTFNoMetric = NAN;
 
 @interface NSLayoutConstraint (TFLayoutConstraintsFactory)
 
@@ -30,4 +30,7 @@ static const CGFloat kTFNoInsetMetric = NAN;
 + (NSArray *)tf_verticalAlignmentConstraintsForViews:(NSArray *)viewsArray separatorViews:(NSArray *)separatorsViewsArray margins:(CGFloat)margin;
 
 + (NSArray *)tf_constraintsForView:(UIView *)view expandingEdgesToSuperviewWithInsets:(UIEdgeInsets)insets;
+
++ (NSArray *)tf_constraintsForView:(UIView *)view withSize:(CGSize)size;
+
 @end

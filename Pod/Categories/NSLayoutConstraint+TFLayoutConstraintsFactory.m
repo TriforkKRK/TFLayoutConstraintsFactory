@@ -62,6 +62,29 @@
     return [constraints copy];
 }
 
++ (NSArray *)tf_constraintsForView:(UIView *)view withSize:(CGSize)size {
+    NSMutableArray *constraints = [[NSMutableArray alloc] init];
+    if (!isnan(size.width)) {
+        [constraints addObject:[NSLayoutConstraint constraintWithItem:view
+                                                            attribute:NSLayoutAttributeWidth
+                                                            relatedBy:NSLayoutRelationEqual
+                                                               toItem:nil
+                                                            attribute:NSLayoutAttributeNotAnAttribute
+                                                           multiplier:1.0
+                                                             constant:size.width]];
+    }
+
+    if (!isnan(size.height)) {
+        [constraints addObject:[NSLayoutConstraint constraintWithItem:view
+                                                            attribute:NSLayoutAttributeHeight
+                                                            relatedBy:NSLayoutRelationEqual
+                                                               toItem:nil
+                                                            attribute:NSLayoutAttributeNotAnAttribute
+                                                           multiplier:1.0
+                                                             constant:size.height]];
+    }
+    return [constraints copy];
+}
 
 #pragma mark - Private Interface
 
