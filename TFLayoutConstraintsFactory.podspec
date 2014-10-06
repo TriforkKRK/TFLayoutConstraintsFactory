@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
   s.name             = "TFLayoutConstraintsFactory"
   s.version          = "1.0.0"
   s.summary          = "Category to generate views’ constraints"
-  s.description      = "Category to help with generation of a view constraints for common problems faced by a programmer while dealing with Auto Layout"
+  s.description      = "Set of methods giving a shorthand while generating NSAutoLayout views' constraints in a common, tedious scenarios."
   s.homepage         = "https://github.com/TriforkKRK/TFLayoutConstraintsFactory"
   
   s.license          = { :type => 'Apache v2', :file => 'LICENSE' }
