@@ -22,10 +22,11 @@ Both arrays can not be nil and number of separators can be less by 1 than number
 `+ (NSArray *)tf_verticalAlignmentConstraintsForViews:(NSArray *)viewsArray separatorViews:(NSArray *)separatorsViewsArray margins:(CGFloat)margin;`
 
 Method returns array of constraints which adopt view to the superview size with defined in insets argument margins from each
-edge. If value passed as one of the insets value is kTFNoMetric then this value for margin is omitted.
+edge. If value passed as one of the insets value is *kTFNoMetric* then this value for margin is omitted.
 `+ (NSArray *)tf_constraintsForView:(UIView *)view expandingEdgesToSuperviewWithInsets:(UIEdgeInsets)insets;`
 
-Method returns array of width and/or height constraints for a view passed in view argument.
+Method returns array of width and/or height constraints for a view passed in view argument if one of the value is set to *kTFNoMetric* 
+then constraint generation will be omitted for that metric.
 `+ (NSArray *)tf_constraintsForView:(UIView *)view withSize:(CGSize)size;`
 
 ## Installation

@@ -46,7 +46,8 @@ static const CGFloat kTFNoMetric = NAN;
 + (NSArray *)tf_constraintsForView:(UIView *)view expandingEdgesToSuperviewWithInsets:(UIEdgeInsets)insets;
 
 /*
- * Method returns array of width and/or height constraints for a view passed in view argument.
+ * Method returns array of width and/or height constraints for a view passed in view argument if one of the value is set to kTFNoMetric 
+ * then constraint generation will be omitted for that metric.
  */
 + (NSArray *)tf_constraintsForView:(UIView *)view withSize:(CGSize)size;
 
