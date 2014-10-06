@@ -25,12 +25,30 @@ static const CGFloat kTFNoMetric = NAN;
 
 @interface NSLayoutConstraint (TFLayoutConstraintsFactory)
 
+/*
+ * Method returns constraints for views passed in viewsArray separated by objects in separatorsViewsArray. Moreover 
+ * margins from left and right edges of a superview can be passed in margin argument.
+ * Both arrays can not be nil and number of separators can be less by 1 than number of views passed in viewsArray argument.
+ */
 + (NSArray *)tf_horizontalAlignmentConstraintsForViews:(NSArray *)viewsArray separatorViews:(NSArray *)separatorsViewsArray margins:(CGFloat)margin;
 
+/*
+ * Method returns constraints for views passed in viewsArray separated by objects in separatorsViewsArray. Moreover 
+ * margins from top and bottom edges of a superview can be passed in margin argument.
+ * Both arrays can not be nil and number of separators can be less by 1 than number of views passed in viewsArray argument.
+ */
 + (NSArray *)tf_verticalAlignmentConstraintsForViews:(NSArray *)viewsArray separatorViews:(NSArray *)separatorsViewsArray margins:(CGFloat)margin;
 
+/*
+ * Method returns array of constraints which adopt view to the superview size with defined in insets argument margins from each
+ * edge. If value passed as one of the insets value is kTFNoMetric then this value for margin is omitted.
+ */
 + (NSArray *)tf_constraintsForView:(UIView *)view expandingEdgesToSuperviewWithInsets:(UIEdgeInsets)insets;
 
+/*
+ * Method returns array of width and/or height constraints for a view passed in view argument.
+ */
 + (NSArray *)tf_constraintsForView:(UIView *)view withSize:(CGSize)size;
+
 
 @end
