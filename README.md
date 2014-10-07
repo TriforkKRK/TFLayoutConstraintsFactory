@@ -92,6 +92,26 @@ it, simply add the following line to your Podfile:
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+### Examples
+
+The example below will return constraints for a `view` defining its height. Width setting will be ommitted because of `kTFNoMetric` value.
+
+    [NSLayoutConstraint tf_constraintsForView:view withSize:CGSizeMake(kTFNoMetric, 80)];
+
+The example below will return an array of constraints for `view`. In the following example constraints will set margins from the superview: 10 points from top, 20 from left, margin to bottom will be unspecified and finally 40 from right.
+
+    [NSLayoutConstraint tf_constraintsForView:view expandingEdgesToSuperviewWithInsets:UIEdgeInsetsMake(10, 20, kTFNoMetric, 40)];
+
+The code below will return array of constraints for aligning views passed in `viewsArray` separated by objects in `separatorsArray`. 
+Returned constraints will set width of all views to be equal between them and the space between them will be also equal to each other. Margin from left and right will be set to 15 points.
+
+    [NSLayoutConstraint tf_horizontalAlignmentConstraintsForViews:viewsArray separatorViews:separatorsArray margins:15]
+
+In the example below returned constraints will act analogously to the previous example but in the vertical way. This means that margins from top and bottom edge of the superview will be set to 15 points, views passed in viewsArray will have the same height.
+Spaces between as previously - equal. 
+
+    [NSLayoutConstraint tf_verticalAlignmentConstraintsForViews:viewsArray separatorViews:separatorsArray margins:15]
+
 ## Author
 
 Julian Król, viperking@poczta.onet.pl
