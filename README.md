@@ -11,15 +11,16 @@ This library is a category on NSLayoutConstraint that adds a few helpful methods
 
 Below short description of the public interface can be found.
 
+Constant representing undifined value:
 
     static const CGFloat kTFNoMetric = NAN;
 
-Constant representing undifined value
 
+    + (NSArray *)tf_horizontalAlignmentConstraintsForViews:(NSArray *)viewsArray 
+                                            separatorViews:(NSArray *)separatorsViewsArray 
+                                                   margins:(CGFloat)margin;
 
-    + (NSArray *)tf_horizontalAlignmentConstraintsForViews:(NSArray *)viewsArray separatorViews:(NSArray *)separatorsViewsArray margins:(CGFloat)margin;
-
-Method returns constraints for views passed in viewsArray separated by objects in separatorsViewsArray. Moreover
+Above method returns constraints for views passed in viewsArray separated by objects in separatorsViewsArray. Moreover
 margins from left and right edges of a superview can be passed in margin argument.
 Both arrays can not be nil and number of separators can be less by 1 than number of views passed in viewsArray argument.
 
@@ -32,9 +33,11 @@ Both arrays can not be nil and number of separators can be less by 1 than number
 Returns array of NSLayoutConstraint objects which are generated constraints
 
 
-    + (NSArray *)tf_verticalAlignmentConstraintsForViews:(NSArray *)viewsArray separatorViews:(NSArray *)separatorsViewsArray margins:(CGFloat)margin;  
+    + (NSArray *)tf_verticalAlignmentConstraintsForViews:(NSArray *)viewsArray 
+                                          separatorViews:(NSArray *)separatorsViewsArray 
+                                                 margins:(CGFloat)margin;  
 
-Method returns constraints for views passed in viewsArray separated by objects in separatorsViewsArray. Moreover
+Above method returns constraints for views passed in viewsArray separated by objects in separatorsViewsArray. Moreover
 margins from top and bottom edges of a superview can be passed in margin argument.
 Both arrays can not be nil and number of separators can be less by 1 than number of views passed in viewsArray argument.
 
@@ -49,7 +52,7 @@ Returns array of NSLayoutConstraint objects which are generated constraints
 
     + (NSArray *)tf_constraintsForView:(UIView *)view expandingEdgesToSuperviewWithInsets:(UIEdgeInsets)insets;
 
-Method returns array of constraints which adopt view to the superview size with defined in insets argument margins from each
+Above method returns array of constraints which adopt view to the superview size with defined in insets argument margins from each
 edge. If value passed as one of the insets value is kTFNoMetric then this value for margin is omitted.
 
 `view` - UIView for which array of constraints will be generated and then returned
@@ -61,7 +64,7 @@ Returns array of NSLayoutConstraint objects which are generated constraints for 
 
     + (NSArray *)tf_constraintsForView:(UIView *)view withSize:(CGSize)size;
 
-Method returns array of width and/or height constraints for a view passed in view argument if one of the value is set to *kTFNoMetric*
+Above method returns array of width and/or height constraints for a view passed in view argument if one of the value is set to *kTFNoMetric*
 then constraint generation will be omitted for that metric.
 
 `view` - UIView for which array of constraints will be generated and then returned
@@ -85,6 +88,8 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 ## Author
 
 Julian Król, viperking@poczta.onet.pl
+
+(In case of any bugs or ideas for extension, feel free to drop me an email)
 
 ## License
 
