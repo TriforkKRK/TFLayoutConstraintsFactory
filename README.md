@@ -11,10 +11,14 @@ This library is a category on NSLayoutConstraint that adds a few helpful methods
 
 Below short description of the public interface can be found.
 
+### Constants
+
 Constant representing undifined value:
 
     static const CGFloat kTFNoMetric = NAN;
 
+
+### Horizontal aligning
 
     + (NSArray *)tf_horizontalAlignmentConstraintsForViews:(NSArray *)viewsArray 
                                             separatorViews:(NSArray *)separatorsViewsArray 
@@ -32,6 +36,7 @@ Both arrays can not be nil and number of separators can be less by 1 than number
 
 Returns array of NSLayoutConstraint objects which are generated constraints
 
+### Vertical aligning
 
     + (NSArray *)tf_verticalAlignmentConstraintsForViews:(NSArray *)viewsArray 
                                           separatorViews:(NSArray *)separatorsViewsArray 
@@ -49,6 +54,7 @@ Both arrays can not be nil and number of separators can be less by 1 than number
 
 Returns array of NSLayoutConstraint objects which are generated constraints
 
+### Margins to superview
 
     + (NSArray *)tf_constraintsForView:(UIView *)view expandingEdgesToSuperviewWithInsets:(UIEdgeInsets)insets;
 
@@ -61,6 +67,7 @@ edge. If value passed as one of the insets value is kTFNoMetric then this value 
 
 Returns array of NSLayoutConstraint objects which are generated constraints for a passed view
 
+### Size setting
 
     + (NSArray *)tf_constraintsForView:(UIView *)view withSize:(CGSize)size;
 
