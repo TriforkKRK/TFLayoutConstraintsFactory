@@ -6,10 +6,22 @@
 [![Platform](https://img.shields.io/cocoapods/p/TFLayoutConstraintsFactory.svg?style=flat)](http://cocoadocs.org/docsets/TFLayoutConstraintsFactory)
 
 This library is a category on NSLayoutConstraint that adds a few helpful methods for generating auto layout constraints.
+Reasons for creating this category are:
+
+1. to have a convenient way for defining size of the component or margins to its container
+2. generate constraints for tedious cases like many views with the same width or height and same space between each other
+
+The category can create constraints to define:
+
+1. view size
+2. margins to its superview
+3. layout for a set of views placed next to each other (horizontally or vertically) with the same width/height and same space in between
+
+Each method returns an array of constraints which can be applied to the view or used for further modifications while you create your desired set of constraints.
 
 ## Documentation
 
-Below short description of the public interface can be found.
+Below a short description of the public interface can be found.
 
 ### Constants
 
