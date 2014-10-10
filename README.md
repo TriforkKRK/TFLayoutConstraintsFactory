@@ -13,7 +13,7 @@ Below short description of the public interface can be found.
 
 ### Constants
 
-Constant representing undifined value:
+Constant representing undefined value:
 
     static const CGFloat kTFNoMetric = NAN;
 
@@ -30,7 +30,7 @@ Both arrays can not be nil and number of separators can be less by 1 than number
 
 `viewsArray` - array containing UIViews for which horizontal aligning constraints will be generated
 
-`separatorsViewsArray` - array containing UIViews which are separators between views for which alignment constraints will be genereated
+`separatorsViewsArray` - array containing UIViews which are separators between views for which alignment constraints will be generated
 
 `margin` - CGFloat value representing (left and right) margins from the superview's edges
 
@@ -48,7 +48,7 @@ Both arrays can not be nil and number of separators can be less by 1 than number
 
 `viewsArray` - array containing UIViews for which vertical aligning constraints will be generated
 
-`separatorsViewsArray` - array containing UIViews which are separators between views for which alignment constraints will be genereated
+`separatorsViewsArray` - array containing UIViews which are separators between views for which alignment constraints will be generated
 
 `margin` - CGFloat value representing (top and bottom) margins from the superview's edges
 
