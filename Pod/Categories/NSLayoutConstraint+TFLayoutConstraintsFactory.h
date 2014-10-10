@@ -22,7 +22,7 @@
  */
 
 /**
- Constant representing undifined value
+ Constant representing undefined value
  */
 static const CGFloat kTFNoMetric = NAN;
 
@@ -33,7 +33,7 @@ static const CGFloat kTFNoMetric = NAN;
  margins from left and right edges of a superview can be passed in margin argument.
  Both arrays can not be nil and number of separators can be less by 1 than number of views passed in viewsArray argument.
  @param viewsArray - array containing UIViews for which horizontal aligning constraints will be generated
- @param separatorsViewsArray - array containing UIViews which are separators between views for which alignment constraints will be genereated
+ @param separatorsViewsArray - array containing UIViews which are separators between views for which alignment constraints will be generated
  @param margin - CGFloat value representing (left and right) margins from the superview's edges
  @returns array of NSLayoutConstraint objects which are generated constraints
  */
@@ -44,7 +44,7 @@ static const CGFloat kTFNoMetric = NAN;
   margins from top and bottom edges of a superview can be passed in margin argument.
   Both arrays can not be nil and number of separators can be less by 1 than number of views passed in viewsArray argument.
   @param viewsArray - array containing UIViews for which vertical aligning constraints will be generated
-  @param separatorsViewsArray - array containing UIViews which are separators between views for which alignment constraints will be genereated
+  @param separatorsViewsArray - array containing UIViews which are separators between views for which alignment constraints will be generated
   @param margin - CGFloat value representing (top and bottom) margins from the superview's edges
   @returns array of NSLayoutConstraint objects which are generated constraints
  */
