@@ -29,6 +29,31 @@ Constant representing undefined value:
 
     static const CGFloat kTFNoMetric = NAN;
 
+### Centering
+
+Method returning array of constraints which will center a view passed in view argument relatively to a view passed 
+in the superview argument 
+
+`view` - a view for which centring constraints will be generated
+
+`superview` - a view to which view passed in the first argument will be centered 
+
+`option` - argument defining exactly how the view will be centered:
+
+1. TFCenteringOptionNone - will cause in returning an empty array of constraints
+2. TFCenteringOptionAxisX - will center view only on the X axis
+3. TFCenteringOptionAxisY - will center view only on the Y axis
+4. TFCenteringOptionAbsolute - will center view on X and Y axis
+
+`offset` - CGPoint representing vector by which center of a centering view will be translated relatively 
+to the center of the superview
+
+Returns array of NSLayoutConstraint objects which are generated constraints, can return an empty array
+
+    + (NSArray *)tf_centerView:(UIView *)view 
+                        toView:(UIView *)superview 
+                       options:(TFCenteringOption)option 
+                        offset:(CGPoint)offset;
 
 ### Horizontal aligning
 
