@@ -139,6 +139,10 @@ The example below will return an array of constraints for `view`. In the followi
 
     [NSLayoutConstraint tf_constraintsForView:view expandingEdgesToSuperviewWithInsets:UIEdgeInsetsMake(10, 20, kTFNoMetric, 40)];
 
+The example below will return ans array of constraints for `view`. In the presented example `view` will be centred on the X and Y axis according to center of the `superview` and translated by 120 points on the Y axis.
+
+    [NSLayoutConstraint tf_centerView:view toView:superview options:TFCenteringOptionAbsolute offset:CGPointMake(kTFNoMetric, 120)];
+
 The code below will return array of constraints for aligning views passed in `viewsArray` separated by objects in `separatorsArray`. 
 Returned constraints will set width of all views to be equal between them and the space between them will be also equal to each other. Margin from left and right will be set to 15 points.
 
