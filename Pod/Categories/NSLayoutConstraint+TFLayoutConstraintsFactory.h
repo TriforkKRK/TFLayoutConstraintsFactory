@@ -26,7 +26,16 @@
  */
 static const CGFloat kTFNoMetric = NAN;
 
+typedef NS_OPTIONS(NSUInteger, TFCenteringOption) {
+    TFCenteringOptionNone = 0,
+    TFCenteringOptionAxisX = 1 << 0,
+    TFCenteringOptionAxisY = 1 << 1,
+    TFCenteringOptionAbsolute = TFCenteringOptionAxisX | TFCenteringOptionAxisY
+};
+
 @interface NSLayoutConstraint (TFLayoutConstraintsFactory)
+
++ (NSArray *)tf_centerView:(UIView *)view toView:(UIView *)superview options:(TFCenteringOption)option offset:(CGPoint)offset;
 
 /**
  Method returns constraints for views passed in viewsArray separated by objects in separatorsViewsArray. Moreover
