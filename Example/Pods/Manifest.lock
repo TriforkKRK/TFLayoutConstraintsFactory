@@ -1,14 +1,19 @@
 PODS:
   - TFLayoutConstraintsFactory (1.0.1)
+  - TFLogger/Core (1.0.0)
+  - TFLogger/NSLogVisualFormat (1.0.0):
+    - TFLogger/Core
 
 DEPENDENCIES:
   - TFLayoutConstraintsFactory (from `../`)
+  - TFLogger/NSLogVisualFormat
 
 EXTERNAL SOURCES:
   TFLayoutConstraintsFactory:
     :path: ../
 
 SPEC CHECKSUMS:
-  TFLayoutConstraintsFactory: 0319b7c6cb339cd33f57d5f971f485021f17d82b
+  TFLayoutConstraintsFactory: 03dc26b7e50a61dcfe59f4e3ca6f7a7dd76bd3d9
+  TFLogger: 84e355635c2dcef46c4b623aed1e47f8a50b4765
 
 COCOAPODS: 0.34.4

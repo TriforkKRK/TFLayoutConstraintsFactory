@@ -22,12 +22,16 @@
  */
 
 #import "TFAppDelegate.h"
+#import <TFLogger/TFLogger.h>
 
 @implementation TFAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    #ifdef DEBUG
+        TFLoggerSetBaselineLevel(ASL_LEVEL_DEBUG);
+    #endif
+    
     return YES;
 }
 							
