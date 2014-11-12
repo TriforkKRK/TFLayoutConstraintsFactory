@@ -64,6 +64,11 @@
 
 + (NSArray *)tf_constraintsForView:(UIView *)view withSize:(CGSize)size {
     NSMutableArray *constraints = [[NSMutableArray alloc] init];
+    if (isnan(size.width) && isnan(size.height)) {
+        NSLog(@"[w] Provided size has kTFNoMetric on both width and height, no constraints created");
+        return [constraints copy];
+    }
+    
     if (!isnan(size.width)) {
         [constraints addObject:[NSLayoutConstraint constraintWithItem:view
                                                             attribute:NSLayoutAttributeWidth
@@ -83,7 +88,57 @@
                                                            multiplier:1.0
                                                              constant:size.height]];
     }
+
     return [constraints copy];
+}
+
++ (NSArray *)tf_centeringConstraintsForView:(UIView *)view
+                             relativeToView:(UIView *)superview
+                                    options:(TFCenteringOption)option
+                                     offset:(CGPoint)offset {
+    switch (option) {
+        case TFCenteringOptionNone:
+            return @[];
+        case TFCenteringOptionAxisX:
+            return @[[NSLayoutConstraint constraintWithItem:view
+                                                  attribute:NSLayoutAttributeCenterX
+                                                  relatedBy:NSLayoutRelationEqual
+                                                     toItem:superview
+                                                  attribute:NSLayoutAttributeCenterX
+                                                 multiplier:1.0
+                                                   constant:isnan(offset.x) ? 0 : offset.x]];
+        case TFCenteringOptionAxisY:
+            return @[[NSLayoutConstraint constraintWithItem:view
+                                                  attribute:NSLayoutAttributeCenterY
+                                                  relatedBy:NSLayoutRelationEqual
+                                                     toItem:superview
+                                                  attribute:NSLayoutAttributeCenterY
+                                                 multiplier:1.0
+                                                   constant:isnan(offset.y) ? 0 : offset.y]];
+        case TFCenteringOptionAbsolute:
+            return @[[NSLayoutConstraint constraintWithItem:view
+                                                  attribute:NSLayoutAttributeCenterX
+                                                  relatedBy:NSLayoutRelationEqual
+                                                     toItem:superview
+                                                  attribute:NSLayoutAttributeCenterX
+                                                 multiplier:1.0
+                                                   constant:isnan(offset.x) ? 0 : offset.x],
+
+                    [NSLayoutConstraint constraintWithItem:view
+                                                 attribute:NSLayoutAttributeCenterY
+                                                 relatedBy:NSLayoutRelationEqual
+                                                    toItem:superview
+                                                 attribute:NSLayoutAttributeCenterY
+                                                multiplier:1.0
+                                                  constant:isnan(offset.y) ? 0 : offset.y]];
+        default:
+        {
+            NSString * msg = @"Unrecognized option! For more information refer to the documentation";
+            NSLog(@"[e] %@", msg);   // log error
+            NSAssert(NO, msg);
+            return nil;
+        }
+    }
 }
 
 #pragma mark - Private Interface
@@ -96,7 +151,12 @@
         return nil;
     }
 
-    NSAssert(!(separatorsViewsArray.count < viewsArray.count - 1), ([NSString stringWithFormat:@"Method %s provided with too little separators views", sel_getName(_cmd)]));
+    if (separatorsViewsArray.count != viewsArray.count - 1){
+        NSString * msg = [NSString stringWithFormat:@"There is an invalid number of separatorViews: %lu, viewsCount: %lu", (unsigned long)separatorsViewsArray.count, (unsigned long)viewsArray.count];
+        NSLog(@"[e] %@", msg);
+        NSAssert(NO, msg);
+        return nil;
+    }
 
     NSMutableDictionary *viewsDictionary = [[NSMutableDictionary alloc] init];
     NSString *constrainString = @"";

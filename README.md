@@ -29,6 +29,31 @@ Constant representing undefined value:
 
     static const CGFloat kTFNoMetric = NAN;
 
+### Centering
+
+Method returning array of constraints which will center a view passed in view argument relatively to a view passed 
+in the superview argument 
+
+`view` - a view for which centring constraints will be generated
+
+`superview` - a view to which view passed in the first argument will be centered 
+
+`option` - argument defining exactly how the view will be centered:
+
+1. TFCenteringOptionNone - will cause in returning an empty array of constraints
+2. TFCenteringOptionAxisX - will center view only on the X axis
+3. TFCenteringOptionAxisY - will center view only on the Y axis
+4. TFCenteringOptionAbsolute - will center view on X and Y axis
+
+`offset` - CGPoint representing vector by which center of a centering view will be translated relatively 
+to the center of the superview
+
+Returns array of NSLayoutConstraint objects which are generated constraints, can return an empty array
+
+    + (NSArray *)tf_centeringConstraintsForView:(UIView *)view 
+                                 relativeToView:(UIView *)superview 
+                                        options:(TFCenteringOption)option 
+                                         offset:(CGPoint)offset
 
 ### Horizontal aligning
 
@@ -114,6 +139,10 @@ The example below will return an array of constraints for `view`. In the followi
 
     [NSLayoutConstraint tf_constraintsForView:view expandingEdgesToSuperviewWithInsets:UIEdgeInsetsMake(10, 20, kTFNoMetric, 40)];
 
+The example below will return ans array of constraints for `view`. In the presented example `view` will be centred on the X and Y axis according to center of the `superview` and translated by 120 points on the Y axis.
+
+    [NSLayoutConstraint tf_centeringConstraintsForView:view relativeToView:superview options:TFCenteringOptionAbsolute offset:CGPointMake(kTFNoMetric, 120)];
+
 The code below will return array of constraints for aligning views passed in `viewsArray` separated by objects in `separatorsArray`. 
 Returned constraints will set width of all views to be equal between them and the space between them will be also equal to each other. Margin from left and right will be set to 15 points.
 
@@ -123,6 +152,22 @@ In the example below returned constraints will act analogously to the previous e
 Spaces between as previously - equal. 
 
     [NSLayoutConstraint tf_verticalAlignmentConstraintsForViews:viewsArray separatorViews:separatorsArray margins:15]
+
+## Changelog
+
+### 1.1.0
+
+- Added method for centering constraints generation
+- Added [TFLogger](https://github.com/TriforkKRK/TFLogger/) support
+
+### 1.0.1 
+
+- Clarifications in the documentation
+
+### 1.0.0
+
+- Initial release
+
 
 ## Author
 
