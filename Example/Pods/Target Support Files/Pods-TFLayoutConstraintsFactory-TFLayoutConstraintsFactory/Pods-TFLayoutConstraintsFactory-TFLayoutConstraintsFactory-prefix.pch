@@ -3,3 +3,7 @@
 #endif
 
 #import "Pods-TFLayoutConstraintsFactory-environment.h"
+#if NSLOG_TO_TFLOGGER_ENABLED
+#import <TFLogger/NSLogVisualFormat.h>
+#define NSLog(...) NSLogToTFLoggerAdapter(@"TFLayoutConstraintsFactory", __VA_ARGS__)
+#endif
