@@ -27,48 +27,6 @@
 
 #pragma mark - Public Interface
 
-+ (NSArray *)tf_centerView:(UIView *)view toView:(UIView *)superview options:(TFCenteringOption)option offset:(CGPoint)offset {
-    switch (option) {
-        case TFCenteringOptionNone:
-            return @[];
-        case TFCenteringOptionAxisX:
-            return @[[NSLayoutConstraint constraintWithItem:view
-                                                  attribute:NSLayoutAttributeCenterX
-                                                  relatedBy:NSLayoutRelationEqual
-                                                     toItem:superview
-                                                  attribute:NSLayoutAttributeCenterX
-                                                 multiplier:1.0
-                                                   constant:isnan(offset.x) ? 0 : offset.x]];
-        case TFCenteringOptionAxisY:
-            return @[[NSLayoutConstraint constraintWithItem:view
-                                                  attribute:NSLayoutAttributeCenterY
-                                                  relatedBy:NSLayoutRelationEqual
-                                                     toItem:superview
-                                                  attribute:NSLayoutAttributeCenterY
-                                                 multiplier:1.0
-                                                   constant:isnan(offset.y) ? 0 : offset.y]];
-        case TFCenteringOptionAbsolute:
-            return @[[NSLayoutConstraint constraintWithItem:view
-                                                  attribute:NSLayoutAttributeCenterX
-                                                  relatedBy:NSLayoutRelationEqual
-                                                     toItem:superview
-                                                  attribute:NSLayoutAttributeCenterX
-                                                 multiplier:1.0
-                                                   constant:isnan(offset.x) ? 0 : offset.x],
-
-                    [NSLayoutConstraint constraintWithItem:view
-                                                 attribute:NSLayoutAttributeCenterY
-                                                 relatedBy:NSLayoutRelationEqual
-                                                    toItem:superview
-                                                 attribute:NSLayoutAttributeCenterY
-                                                multiplier:1.0
-                                                  constant:isnan(offset.y) ? 0 : offset.y]];
-        default:
-            NSAssert(FALSE, @"Unrecognized option! For more information refer to the documentation");
-            return nil;
-    }
-}
-
 + (NSArray *)tf_horizontalAlignmentConstraintsForViews:(NSArray *)viewsArray separatorViews:(NSArray *)separatorsViewsArray margins:(CGFloat)margin {
     return [self tf_generateAlignmentConstraintForViews:viewsArray separatorViews:separatorsViewsArray horizontally:YES margins:margin];
 }
@@ -126,6 +84,51 @@
                                                              constant:size.height]];
     }
     return [constraints copy];
+}
+
++ (NSArray *)tf_centeringConstraintsForView:(UIView *)view
+                             relativeToView:(UIView *)superview
+                                    options:(TFCenteringOption)option
+                                     offset:(CGPoint)offset {
+    switch (option) {
+        case TFCenteringOptionNone:
+            return @[];
+        case TFCenteringOptionAxisX:
+            return @[[NSLayoutConstraint constraintWithItem:view
+                                                  attribute:NSLayoutAttributeCenterX
+                                                  relatedBy:NSLayoutRelationEqual
+                                                     toItem:superview
+                                                  attribute:NSLayoutAttributeCenterX
+                                                 multiplier:1.0
+                                                   constant:isnan(offset.x) ? 0 : offset.x]];
+        case TFCenteringOptionAxisY:
+            return @[[NSLayoutConstraint constraintWithItem:view
+                                                  attribute:NSLayoutAttributeCenterY
+                                                  relatedBy:NSLayoutRelationEqual
+                                                     toItem:superview
+                                                  attribute:NSLayoutAttributeCenterY
+                                                 multiplier:1.0
+                                                   constant:isnan(offset.y) ? 0 : offset.y]];
+        case TFCenteringOptionAbsolute:
+            return @[[NSLayoutConstraint constraintWithItem:view
+                                                  attribute:NSLayoutAttributeCenterX
+                                                  relatedBy:NSLayoutRelationEqual
+                                                     toItem:superview
+                                                  attribute:NSLayoutAttributeCenterX
+                                                 multiplier:1.0
+                                                   constant:isnan(offset.x) ? 0 : offset.x],
+
+                    [NSLayoutConstraint constraintWithItem:view
+                                                 attribute:NSLayoutAttributeCenterY
+                                                 relatedBy:NSLayoutRelationEqual
+                                                    toItem:superview
+                                                 attribute:NSLayoutAttributeCenterY
+                                                multiplier:1.0
+                                                  constant:isnan(offset.y) ? 0 : offset.y]];
+        default:
+            NSAssert(NO, @"Unrecognized option! For more information refer to the documentation");
+            return nil;
+    }
 }
 
 #pragma mark - Private Interface

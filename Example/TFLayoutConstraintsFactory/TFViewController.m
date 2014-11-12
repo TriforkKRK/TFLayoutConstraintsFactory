@@ -46,7 +46,7 @@
     greenView.backgroundColor = [UIColor greenColor];
     [self.view addSubview:greenView];
     
-    [self.view addConstraints:[NSLayoutConstraint tf_centerView:greenView toView:self.view options:TFCenteringOptionAbsolute offset:CGPointMake(kTFNoMetric, 120)]];
+    [self.view addConstraints:[NSLayoutConstraint tf_centeringConstraintsForView:greenView relativeToView:self.view options:TFCenteringOptionAbsolute offset:CGPointMake(kTFNoMetric, 120)]];
     [self.view addConstraints:[NSLayoutConstraint tf_constraintsForView:greenView withSize:CGSizeMake(100, 100)]];
     
     UILabel *l1 = [[UILabel alloc] init];

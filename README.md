@@ -50,10 +50,10 @@ to the center of the superview
 
 Returns array of NSLayoutConstraint objects which are generated constraints, can return an empty array
 
-    + (NSArray *)tf_centerView:(UIView *)view 
-                        toView:(UIView *)superview 
-                       options:(TFCenteringOption)option 
-                        offset:(CGPoint)offset;
+    + (NSArray *)tf_centeringConstraintsForView:(UIView *)view 
+                                 relativeToView:(UIView *)superview 
+                                        options:(TFCenteringOption)option 
+                                         offset:(CGPoint)offset
 
 ### Horizontal aligning
 
@@ -141,7 +141,7 @@ The example below will return an array of constraints for `view`. In the followi
 
 The example below will return ans array of constraints for `view`. In the presented example `view` will be centred on the X and Y axis according to center of the `superview` and translated by 120 points on the Y axis.
 
-    [NSLayoutConstraint tf_centerView:view toView:superview options:TFCenteringOptionAbsolute offset:CGPointMake(kTFNoMetric, 120)];
+    [NSLayoutConstraint tf_centeringConstraintsForView:view relativeToView:superview options:TFCenteringOptionAbsolute offset:CGPointMake(kTFNoMetric, 120)];
 
 The code below will return array of constraints for aligning views passed in `viewsArray` separated by objects in `separatorsArray`. 
 Returned constraints will set width of all views to be equal between them and the space between them will be also equal to each other. Margin from left and right will be set to 15 points.
