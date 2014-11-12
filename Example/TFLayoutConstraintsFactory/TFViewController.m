@@ -30,8 +30,7 @@
 
 @implementation TFViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 
     UIView *redView = [[UIView alloc] init];
@@ -40,8 +39,16 @@
     [self.view addSubview:redView];
     
     [self.view addConstraints:[NSLayoutConstraint tf_constraintsForView:redView withSize:CGSizeMake(kTFNoMetric, 80)]];
-    
     [self.view addConstraints:[NSLayoutConstraint tf_constraintsForView:redView expandingEdgesToSuperviewWithInsets:UIEdgeInsetsMake(10, 20, kTFNoMetric, 40)]];
+
+    UIView *greenView = [[UIView alloc] init];
+    greenView.translatesAutoresizingMaskIntoConstraints = NO;
+    greenView.backgroundColor = [UIColor greenColor];
+    [self.view addSubview:greenView];
+    
+    [self.view addConstraints:[NSLayoutConstraint tf_centeringConstraintsForView:greenView relativeToView:self.view options:TFCenteringOptionAbsolute offset:CGPointMake(kTFNoMetric, 120)]];
+    [self.view addConstraints:[NSLayoutConstraint tf_constraintsForView:greenView withSize:CGSizeMake(100, 100)]];
+    
     UILabel *l1 = [[UILabel alloc] init];
     l1.translatesAutoresizingMaskIntoConstraints = NO;
     l1.text = @"1";
@@ -84,14 +91,13 @@
     UIView *view = l1;
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[view]-40-|" options:NSLayoutFormatDirectionLeadingToTrailing
                                                                       metrics:nil views:NSDictionaryOfVariableBindings(view)]];
-    
+
     [self.view addConstraints:[NSLayoutConstraint tf_horizontalAlignmentConstraintsForViews:@[l1, l2, l3, l4]
-                                                                           separatorViews:@[sep1, sep2, sep3]
-                                                                                  margins:15]];
+                                                                             separatorViews:@[sep1, sep2, sep3]
+                                                                                    margins:15]];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

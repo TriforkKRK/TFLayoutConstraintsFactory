@@ -26,6 +26,16 @@
  */
 static const CGFloat kTFNoMetric = NAN;
 
+/**
+* Options defining different ways for centering
+*/
+typedef NS_OPTIONS(NSUInteger, TFCenteringOption) {
+    TFCenteringOptionNone = 0,
+    TFCenteringOptionAxisX = 1 << 0,
+    TFCenteringOptionAxisY = 1 << 1,
+    TFCenteringOptionAbsolute = TFCenteringOptionAxisX | TFCenteringOptionAxisY
+};
+
 @interface NSLayoutConstraint (TFLayoutConstraintsFactory)
 
 /**
@@ -59,7 +69,6 @@ static const CGFloat kTFNoMetric = NAN;
  */
 + (NSArray *)tf_constraintsForView:(UIView *)view expandingEdgesToSuperviewWithInsets:(UIEdgeInsets)insets;
 
-
 /**
   Method returns array of width and/or height constraints for a view passed in view argument if one of the value is set to kTFNoMetric
   then constraint generation will be omitted for that metric.
@@ -69,5 +78,16 @@ static const CGFloat kTFNoMetric = NAN;
  */
 + (NSArray *)tf_constraintsForView:(UIView *)view withSize:(CGSize)size;
 
+/**
+Method returning array of constraints which will center a view passed in view argument relatively to a view passed
+in superview argument
+@param view - a view for which centering constraints will be generated
+@param superview - a view to which view passed in the first argument will be centered
+@param option - argument defining exactly how the view will be centered
+@pram offset - CGPoint representing vector by which center of a centering view will be translated relatively
+to the center of the superview
+@returns array of NSLayoutConstraint objects which are generated constraints, can return an empty array
+*/
++ (NSArray *)tf_centeringConstraintsForView:(UIView *)view relativeToView:(UIView *)superview options:(TFCenteringOption)option offset:(CGPoint)offset;
 
 @end
