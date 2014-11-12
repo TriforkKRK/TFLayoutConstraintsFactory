@@ -81,7 +81,7 @@ typedef NS_OPTIONS(NSUInteger, TFCenteringOption) {
 /**
 Method returning array of constraints which will center a view passed in view argument relatively to a view passed
 in superview argument
-@param view - a view for which centring constraints will be generated
+@param view - a view for which centering constraints will be generated
 @param superview - a view to which view passed in the first argument will be centered
 @param option - argument defining exactly how the view will be centered
 @pram offset - CGPoint representing vector by which center of a centering view will be translated relatively
