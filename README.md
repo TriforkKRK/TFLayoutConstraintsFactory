@@ -153,6 +153,22 @@ Spaces between as previously - equal.
 
     [NSLayoutConstraint tf_verticalAlignmentConstraintsForViews:viewsArray separatorViews:separatorsArray margins:15]
 
+## Changelog
+
+### 1.1.0
+
+- Added method for centering constraints generation
+- Added [TFLogger](https://github.com/TriforkKRK/TFLogger/) support
+
+### 1.0.1 
+
+- Clarifications in the documentation
+
+### 1.0.0
+
+- Initial release
+
+
 ## Author
 
 Julian Król, viperking@poczta.onet.pl
