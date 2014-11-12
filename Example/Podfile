@@ -1,7 +1,3 @@
 target 'TFLayoutConstraintsFactory', :exclusive => true do
   pod "TFLayoutConstraintsFactory", :path => "../"
 end
-
-target 'Tests', :exclusive => true do
-  pod "TFLayoutConstraintsFactory", :path => "../"
-end
